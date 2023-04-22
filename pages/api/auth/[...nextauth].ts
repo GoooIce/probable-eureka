@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize() {
         return {
-          id: 1,
+          id: "1",
           name: "GoooIce",
           email: "devel0per1991@outlook.com",
           image: "https://avatar.vercel.sh/goooice",
