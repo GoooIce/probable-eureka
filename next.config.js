@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['avatars.githubusercontent.com', 'avatar.vercel.sh']
+    domains: ['avatars.githubusercontent.com', 'avatar.vercel.sh', 'i.pravatar.cc']
   },
   experimental: {
     appDir: true,
