@@ -1,8 +1,8 @@
 import './globals.css';
 
-import Nav from './nav';
-import AnalyticsWrapper from './analytics';
-import Toast from './toast';
+import Nav from './components/nav';
+import AnalyticsWrapper from './components/analytics';
+import Toast from './components/toast';
 import { Suspense } from 'react';
 
 export const metadata = {
@@ -25,7 +25,7 @@ export default async function RootLayout({
         </Suspense>
         {children}
         <AnalyticsWrapper />
-        <Toast />
+        {/* <Toast /> */}
       </body>
     </html>
   );
