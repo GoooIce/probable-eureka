@@ -1,7 +1,11 @@
-import { Card, Title, Text } from '@tremor/react';
+import { Card, Title, Text, Button } from '@tremor/react';
 import { queryBuilder } from '../lib/planetscale';
+import AMapWrapper from './components/amap';
 import Search from './components/search';
-import UsersTable from './components/table';
+import CustomersTable from './components/table';
+import CSVUploader from './components/upload';
+import { getCustomers } from './services/customerServer';
+import { sql } from "@vercel/postgres";
 
 export const dynamic = 'force-dynamic';
 
@@ -11,23 +15,31 @@ export default async function IndexPage({
   searchParams: { q: string };
 }) {
   const search = searchParams.q ?? '';
-  const users = await queryBuilder
-    .selectFrom('users')
-    .select(['id', 'name', 'username', 'email'])
-    .where('name', 'like', `%${search}%`)
-    .execute();
+  const customers = await getCustomers(search);
+  // const { rows } = await sql`SELECT * from users where email=${search}`;
+
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
-      <Title>Users</Title>
-      <Text>
-        A list of users.
-      </Text>
+      <Title>销售机会</Title>
+      <CSVUploader />
+      {/* <Button onClick={uploadCsvFile('app/test.csv')}>csv</Button> */}
+
       <Search />
       <Card className="mt-6">
         {/* @ts-expect-error Server Component */}
-        <UsersTable users={users} />
+        <CustomersTable customers={customers} />
+        {/* <div className="mt-6 p-4 h-screen"><AMapWrapper customers={customers} /></div> */}
+        {/* <div>
+          {rows.map((row) => (
+            <div key={row.id}>
+              {row.id} - {row.quantity}
+            </div>
+          ))}
+        </div> */}
       </Card>
+
+
     </main>
   );
 }

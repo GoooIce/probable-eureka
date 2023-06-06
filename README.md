@@ -1,32 +1,18 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/9113740/201498864-2a900c64-d88f-4ed4-b5cf-770bcb57e1f5.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-  <img alt="Shows all of the tools in the stack for this template, also listed in the README file." src="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-</picture>
+# 创业相关问题
 
-<div align="center"><strong>Next.js 13 Admin Dashboard Template</strong></div>
-<div align="center">Built with the new `app` directory (beta).</div>
-<br />
-<div align="center">
-<a href="http://admin-dash-template.vercel.sh/">Demo</a>
-<span> · </span>
-<a href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-planetscale-react-nextjs">Clone & Deploy</a>
-<span>
-</div>
+## 作为初创食品工厂是否应该自建 CRM&ERP 软件？
+# 继续
+## 是否应该自建 CRM&ERP 软件的优缺点
 
-## Overview
+### 优点
+# 1. 定制化：可以根据自己的需求定制功能和界面
+# 2. 数据安全：自建系统可以更好地保护企业数据
+# 3. 长期成本：长期使用下来，自建系统的成本可能低于购买第三方服务
 
-This is a starter template using the following stack:
+### 缺点
+# 1. 开发成本：自建系统需要投入大量的开发成本和时间
+# 2. 技术支持：需要有专业的技术团队进行维护和升级
+# 3. 更新速度：第三方服务可能更新迭代速度更快，更容易跟上市场需求
 
-- Framework - [Next.js 13](https://nextjs.org/13)
-- Language - [TypeScript](https://www.typescriptlang.org)
-- Auth - [NextAuth.js](https://next-auth.js.org)
-- Database - [PlanetScale](https://planetscale.com)
-- Deployment - [Vercel](https://vercel.com/docs/concepts/next.js/overview)
-- Styling - [Tailwind CSS](https://tailwindcss.com)
-- Components - [Tremor](https://www.tremor.so)
-- Analytics - [Vercel Analytics](https://vercel.com/analytics)
-- Linting - [ESLint](https://eslint.org)
-- Formatting - [Prettier](https://prettier.io)
-
-This template uses the new `app` directory in Next.js 13 (beta). This includes support for enhanced layouts, colocation of components, tests, and styles, component-level data fetching, and more.
+## 结论
+# 根据企业的实际情况和需求权衡，如果有足够的技术团队和资金支持，可以考虑自建 CRM&ERP 软件。

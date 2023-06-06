@@ -8,8 +8,11 @@ import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 
 const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Playground', href: '/playground' }
+  { name: '看板', href: '/' },
+  { name: '客户', href: '/playground' },
+  { name: '报告', href: '/report' },
+  { name: '配置', href: '/setting' }
+
 ];
 
 function classNames(...classes: string[]) {
@@ -113,9 +116,9 @@ export default function Navbar({ user }: { user: any }) {
                                 active ? 'bg-gray-100' : '',
                                 'flex w-full px-4 py-2 text-sm text-gray-700'
                               )}
-                              onClick={() => signIn('github')}
+                              onClick={() => signIn()}
                             >
-                              Sign in
+                              Sign in 1
                             </button>
                           )}
                         </Menu.Item>
@@ -193,7 +196,7 @@ export default function Navbar({ user }: { user: any }) {
                     onClick={() => signIn('github')}
                     className="flex w-full px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   >
-                    Sign in
+                    Sign in 2
                   </button>
                 </div>
               )}

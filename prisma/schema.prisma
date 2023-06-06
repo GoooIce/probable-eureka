@@ -1,0 +1,213 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol", "postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+model Tenant {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  @@map(name: "tenants")
+}
+
+model Employee {
+  id     Int      @id @default(autoincrement())
+  name   String
+  num    String // 工号
+  idCard Int // 身份证号
+  gender String   @db.Char(2) // 性别
+  dob    DateTime // 出生日期
+
+  // 虚拟外键
+  orgId    Int
+  tenantId Int
+  postCode String? @db.Char(10)
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  @@map(name: "employees")
+}
+
+model EmployeePost {
+  id         Int    @id @default(autoincrement())
+  employeeId Int
+  postCode   String @db.Char(10)
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "employee_posts")
+}
+
+model Post {
+  code String @id @db.Char(10)
+  name String
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "posts")
+}
+
+model Org {
+  id          Int    @id @default(autoincrement())
+  name        String
+  superiorId  Int?
+  orgTypeCode String @db.Char(10)
+  leaderId    Int?
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "orgs")
+}
+
+model OrgType {
+  code String @id @db.Char(10)
+  name String
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "org_types")
+}
+
+model Client {
+  id    Int    @id @default(autoincrement())
+  mngId Int // 客户经理
+  name  String @db.VarChar(50)
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "clients")
+}
+
+model Contract {
+  id       Int @id @default(autoincrement())
+  clientId Int // 客户
+  mngId    Int // 客户经理
+
+  number    String   @db.VarChar(20) // 合同编号
+  name      String?  @db.VarChar(50)
+  startDate DateTime // 合同开始日期
+  endDate   DateTime // 合同结束日期
+
+  status String // 合同状态
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "contracts")
+}
+
+model Project {
+  id       Int @id @default(autoincrement())
+  clientId Int // 客户
+  mngId    Int // 客户经理
+
+  number String  @db.VarChar(50) // 项目编号
+  name   String? @db.VarChar(50)
+
+  status String // 项目状态
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "projects")
+}
+
+model ProjectMember {
+  id         Int @id @default(autoincrement())
+  projectId  Int
+  employeeId Int
+
+  estimateInvestRatio Int // 预计投入比例
+  startAt             DateTime // 开始日期
+  endAt               DateTime // 结束日期
+  status              String // 项目状态
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "project_members")
+}
+
+model EffortRecord {
+  id         Int @id @default(autoincrement())
+  projectId  Int
+  employeeId Int
+
+  workDate DateTime // 工作日期
+  effort   Float // 工作量
+  notes    String? // 备注
+
+  // 审计字段
+  createdAt     DateTime @default(now())
+  createdBy     String
+  lastUpdatedAt DateTime @updatedAt
+  lastUpdatedBy String
+
+  tenantId Int
+
+  @@map(name: "effort_records")
+}

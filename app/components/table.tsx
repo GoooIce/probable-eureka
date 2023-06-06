@@ -8,32 +8,37 @@ import {
   Text
 } from '@tremor/react';
 
-interface User {
+interface Customer {
   id: number;
-  name: string;
-  username: string;
-  email: string;
+  company_name: string;
+  customer_type: string;
+  business_scale: string;
+  geo_vector: string;
 }
 
-export default async function UsersTable({ users }: { users: User[] }) {
+export default async function CustomersTable({ customers }: { customers: Customer[] }) {
   return (
     <Table>
       <TableHead>
         <TableRow>
-          <TableHeaderCell>Name</TableHeaderCell>
-          <TableHeaderCell>Username</TableHeaderCell>
-          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>公司名</TableHeaderCell>
+          <TableHeaderCell>类型</TableHeaderCell>
+          <TableHeaderCell>规模</TableHeaderCell>
+          <TableHeaderCell>geo</TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {users.map((user) => (
-          <TableRow key={user.id}>
-            <TableCell>{user.name}</TableCell>
+        {customers.map((customer) => (
+          <TableRow key={customer.id}>
+            <TableCell>{customer.company_name}</TableCell>
             <TableCell>
-              <Text>{user.username}</Text>
+              <Text>{customer.customer_type}</Text>
             </TableCell>
             <TableCell>
-              <Text>{user.email}</Text>
+              <Text>{customer.business_scale}</Text>
+            </TableCell>
+            <TableCell>
+              <Text>{customer.geo_vector}</Text>
             </TableCell>
           </TableRow>
         ))}
